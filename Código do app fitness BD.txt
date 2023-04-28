@@ -1,0 +1,49 @@
+CREATE table fitness(
+ metas_atingidas VARCHAR(40) Not NULL,
+ quilometros_percorridos VARCHAR(50) not NULL,
+ calorias_gastas VARCHAR(45) not NULL,
+ media_diaria VARCHAR(35) not NULL,
+ metas_semanais VARCHAR(40) NOT NULL,
+ quantidade_de_passos VARCHAR(55) NOT NULL,
+ id_Pk VARCHAR(14) not NULL,
+ id_fit_pk VARCHAR(14) not NULL,
+ id_fitness_fk VARCHAR(18) NOT NULL,
+ identificador_da_restrição_fk VARCHAR(18) not NULL,
+ PRIMARY KEY (id_Pk)
+ FOREIGN KEY (id_fit_pk)
+ )
+ CREATE TABLE usuario(
+   cpf_pk VARCHAR(15) NOT NULL,
+   tipo_sanguineo VARCHAR(3) NOT NULL,
+   idade VARCHAR(3) NOT NULL,
+   altura VARCHAR(4) NOT NULL,
+   peso VARCHAR(5) not NULL,
+   nome VARCHAR(50) NOT NULL,
+   id_fit_pk VARCHAR(18) NOT NULL,
+   id_fitness_fk VARCHAR(18) NOT NULL,
+   primary key(cpf_pk),
+   FOREIGN key(id_fitness_fk) REFERENCES fitness(id_Pk)
+   )
+   CREATE TABLE exercicios(
+     bike_ao_ar_livre VARCHAR(12) not NULL,
+     treino_de_forca_convencional VARCHAR(12) NOT NULL,
+     caminhada_sem_meta VARCHAR(12) NOT NULL,
+     corrida_ao_ar_livre VARCHAR(12) not NULL,
+     danca VARCHAR(16) NOT NULL,
+     treino_hit VARCHAR(16) NOT NULL,
+     identificador_pk VARCHAR(18) NOT NULL,
+     id_fitness_fk VARCHAR(18) not NULL,
+    PRIMARY KEY(identificador_pk),
+    FOREIGN key(id_fitness_fk) REFERENCES fitness(id_fitness_fk)
+    )
+    create table restricao(
+      batimentos_elevados VARCHAR(3) not NULL,
+      limitacao_de_atividades VARCHAR(10) not NULL,
+      registro_de_batimentos_elevados VARCHAR(21) not NULL,
+      falta_de_exercicios VARCHAR(7) not NULL,
+      compartilhar_com_medico VARCHAR(84) not NULL,
+      identificador_pk VARCHAR(18) not NULL,
+      identificador_restricao_dos_exercicios_fk VARCHAR(18) not NULL,
+     PRIMARY key(identificador_pk),
+     FOREIGN key(identificador_restricao_dos_exercicios_fk) REFERENCES fitness(identificador_da_restrição_fk)
+     )

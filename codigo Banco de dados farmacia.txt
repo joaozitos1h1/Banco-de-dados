@@ -1,0 +1,42 @@
+CREATE table farmacia(
+  CNPJ_pk VARCHAR(14) NOT NULL,
+  endereco VARCHAR(100) Not NULL,
+  nome VARCHAR(50) Not NULL,
+  filiais VARCHAR(250) NOT NULL,
+  PRIMARY key(cnpj_pk)
+  )
+    
+  CREATE table sistema_de_venda(
+    cnpj_pk VARCHAR(50) not NULL,
+    produtos_vendidos VARCHAR(50) Not NULL,
+    cnpj_farmacia_fk VARCHAR(14) not NULL,
+    vendas VARCHAR(300) NOT NULL,
+    PRIMARY key(cnpj_pk),
+    FOREIGN key(cnpj_farmacia_fk) REFERENCES farmacia(cnpj_pk)
+    )   
+  
+  CREATE table deposito(
+    cnpj_pk VARCHAR(50) not NULL,
+    abastecimento VARCHAR(50) Not NULL,
+    sistema_de_venda_fk VARCHAR(50) not NULL,
+    pedidos VARCHAR(300) NOT NULL,
+    PRIMARY key(cnpj_pk),
+    FOREIGN key(sistema_de_venda_fk) REFERENCES sistema_de_venda(cnpj_pk)
+    )
+    
+  CREATE table sistema_atendimento(
+    cnpj_pk VARCHAR(50) not NULL,
+    vendas VARCHAR(50) Not NULL,
+    cnpj_farmacia_fk VARCHAR(14) not NULL,
+    clientes VARCHAR(300) NOT NULL,
+    PRIMARY key(cnpj_pk),
+    FOREIGN key(cnpj_farmacia_fk) REFERENCES farmacia(cnpj_pk)
+    )
+    INSERT INTO farmacia (CNPJ_pk , endereco , nome , filiais)
+    VALUES ('6354634' , 'joao pão 22' , 'anderson silva' , 'pão careca metaleira')
+    INSERT INTO sistema_de_venda ( cnpj_pk , produtos_vendidos , cnpj_farmacia_fk , vendas )
+    VALUES ('2548547','255','6354634','515')
+    INSERT into deposito (cnpj_pk , abastecimento , sistema_de_venda , pedidos )
+    VALUES ('852466','146','2548547','122')
+    INSERT INTO sistema_atendimento (cnpj_pk , vendas , cnpj_farmacia_fk , clientes)
+    VALUES ('36431346','255','6354634','robervaldo')

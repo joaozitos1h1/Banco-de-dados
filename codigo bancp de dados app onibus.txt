@@ -1,0 +1,43 @@
+CREATE TABLE usuario(
+  nome_u VARCHAR (100),
+  cpf_u VARCHAR (20)NOT NULL,
+  id_passe INT Not NULL,
+  PRIMARY KEY (id_passe)
+  )
+  CREATE TABLE motora(
+    nome_m VARCHAR (100),
+    cpf_m VARCHAR (20) NOT NULL,
+    cnh VARCHAR (20) NOT NULL,
+    id_m INT NOT NULL,
+    PRIMARY key (id_m)
+    )
+    CREATE TABLE onibus(
+      rota VARCHAR (100) NOT NULL,
+      placa VARCHAR (10) NOT NULL,
+      id_o INT NOT NULL,
+      id_m_fk INT NOT NULL,
+      id_p_fk INT NOT NULL,
+      PRIMARY KEy(id_o),
+      FOREIGN key (id_m_fk) REFERENCES motora(id_m),
+      FOREIGN key (id_p_fk) REFERENCES usuario(id_passe)
+      )
+      CReate table empresa(
+        nome_e VARCHAR(20) NOT NULL,
+        cnpj VARCHAR(20) NOT NULL,
+        cidade VARCHAR (25),
+        id_m_fk INT NOT NULL,
+        id_o_fk INT NOT NULL,
+        id_p_fk INT NOT NULL,
+        PRIMARY Key (cnpj),
+        FOREIGN key (id_m_fk) REFERENCES motora(id_m),
+        FOREIGN key (id_o_fk) REFERENCES onibus(id_o),
+        FOREIGN key (id_p_fk) REFERENCES usuario(id_passe)
+        )
+        INSERT into usuario (nome_u,cpf_u,id_passe)
+        values ('Robervaldo Vacarineto','6246346','000001');
+        INSERT INTO motora(nome_m,cpf_m,cnh,id_m)
+        values ('Miro Morales','52262462','23544353','987654321');
+        INSERT into onibus(rota,placa,id_o,id_m_fk,id_p_fk)
+        Values ('Aririu - Palhoça','Fah645i8','123458','987654321','000001');
+        INSERT INTO empresa(nome_e,cnpj,cidade,id_m_fk,id_o_fk,id_p_fk)
+        values ('Jonttur','582762352','Palhoça','987654321','123458','000001')
